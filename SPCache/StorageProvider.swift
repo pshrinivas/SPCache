@@ -9,12 +9,12 @@
 import Foundation
 
 protocol StorageProvider {
-    associatedtype StorageType
     
-    func get(value forKey : String) -> StorageType
+    func get(for key : String) -> Data?
     
-    func set(value : StorageType?, key : String)
+    func set(value : Data?, key : String)
     
     func removeAll()
     
 }
+
