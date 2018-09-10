@@ -8,20 +8,30 @@
 
 import Foundation
 
-class SPCache<T>{
+class SPCache<T : SerializationProtocol>{
     
-    subscript (key : String) -> T? {
-        // the getter is required
-        get {
-        // used for subscript value declarations
-            return nil
-        }
-        set(newValue) { // the setter is optional
-        // definitions are written here
-        }
+    private var config : SPCacheConfig
+    
+    init(config : SPCacheConfig = SPCacheConfig.defaultConfig) {
+        self.config = config
     }
     
+//    subscript (key : String) -> T? {
+//        // the getter is required
+//        get {
+//        // used for subscript value declarations
+//         //   return config.storage.get(for: key)
+//        }
+//        set(newValue) { // the setter is optional
+//        // definitions are written here
+//        }
+//    }
+    
     func clearAll(){
+        
+    }
+    
+    func serialize(){
         
     }
 }
