@@ -11,21 +11,21 @@ import Foundation
 struct SPCacheConfig{
     
     // Unique Identifier for config
-    var identifier : String
+    private (set) var identifier : String
     
     // Defines eviction Policy
-    var evictionPolicy : SPCacheEvictionPolicy
+    private (set) var evictionPolicy : SPCacheEvictionPolicy
     
     // Defines Storage provider
-    var storage : StorageProvider
+    private (set) var storage : StorageProvider
     
     // Indicates memory size in kb
     // Default value is 0 indicating unlimited memory
-    var memorySizeInKb : UInt = 0
+    private (set) var memorySizeInKb : UInt = 0
     
     // Indicates max entry made in cache
     // Default value is 0 indicating unlimited entry
-    var maxEntry : UInt = 0
+    private (set) var maxEntry : UInt = 0
     
     static var defaultConfig : SPCacheConfig{
         let memoryStorage = MemoryStorage()

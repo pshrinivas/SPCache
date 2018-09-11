@@ -12,6 +12,23 @@ class SPCache<T : SerializationProtocol>{
     
     private var config : SPCacheConfig
     
+    private var evictionPolicy : SPCacheEvictionPolicy{
+        return config.evictionPolicy
+    }
+    
+    // Defines Storage provider
+    private var storage : StorageProvider{
+        return config.storage
+    }
+    
+    private var memorySizeInKb : UInt{
+        return config.memorySizeInKb
+    }
+    
+    private var maxEntry : UInt{
+        return config.maxEntry
+    }
+    
     init(config : SPCacheConfig = SPCacheConfig.defaultConfig) {
         self.config = config
     }
@@ -19,25 +36,39 @@ class SPCache<T : SerializationProtocol>{
     subscript (key : String) -> T? {
         // the getter is required
         get {
-            guard let storedData = config.storage.get(for: key),
+            guard let storedData = storage.get(for: key),
                 let value = T.deSerialize(data: storedData) as? T else{
                     return nil
             }
             
-            config.evictionPolicy.acess(key: key)
+            evictionPolicy.acess(key: key)
+            if shouldEvict {
+                evictionPolicy.evict()
+            }
             
             return value
         }
         set(newValue) {
             guard let newValue = newValue,
                 let serializedValue = T.serialize(info: newValue) else{
-                    config.storage.set(value: nil, key: key)
+                    storage.set(value: nil, key: key)
                     return
             }
             
-            config.storage.set(value: serializedValue, key: key)
+            storage.set(value: serializedValue, key: key)
             
         }
+    }
+    
+    private var shouldEvict : Bool{
+        if (((storage.currentMemoryInKb != 0)
+            && (memorySizeInKb <= storage.currentMemoryInKb)) ||
+            ((storage.numberOfEntries != 0) &&
+                (maxEntry <= storage.numberOfEntries))) {
+            return true
+        }
+        
+        return false
     }
     
     func clearAll(){

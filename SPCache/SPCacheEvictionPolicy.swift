@@ -14,20 +14,17 @@ protocol SPCacheEvictionPolicy {
     
     func delete(key : String)
     
-    var nextEvictCandidate : String{ get }
+    var nextEvictCandidateKey : String{ get }
     
     var shouldEvict : Bool { get }
     
-    var currentMemoryInKb : UInt { get }
-    
-    var numberOfEntries : UInt { get }
     
 }
 
 extension SPCacheEvictionPolicy{
     func evict(){
         if shouldEvict{
-            delete(key: nextEvictCandidate)
+            delete(key: nextEvictCandidateKey)
         }
     }
 }
