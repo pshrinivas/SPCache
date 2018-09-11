@@ -16,22 +16,32 @@ class SPCache<T : SerializationProtocol>{
         self.config = config
     }
     
-//    subscript (key : String) -> T? {
-//        // the getter is required
-//        get {
-//        // used for subscript value declarations
-//         //   return config.storage.get(for: key)
-//        }
-//        set(newValue) { // the setter is optional
-//        // definitions are written here
-//        }
-//    }
+    subscript (key : String) -> T? {
+        // the getter is required
+        get {
+            guard let storedData = config.storage.get(for: key),
+                let value = T.deSerialize(data: storedData) as? T else{
+                    return nil
+            }
+            
+            config.evictionPolicy.acess(key: key)
+            
+            return value
+        }
+        set(newValue) {
+            guard let newValue = newValue,
+                let serializedValue = T.serialize(info: newValue) else{
+                    config.storage.set(value: nil, key: key)
+                    return
+            }
+            
+            config.storage.set(value: serializedValue, key: key)
+            
+        }
+    }
     
     func clearAll(){
         
     }
     
-    func serialize(){
-        
-    }
 }
