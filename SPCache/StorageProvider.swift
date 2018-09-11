@@ -12,9 +12,15 @@ protocol StorageProvider {
     
     func get(for key : String) -> Data?
     
-    func set(value : Data?, key : String)
+    func set(value : Data, key : String)
+    
+    func delete(key : String)
     
     func removeAll()
+    
+    var currentMemoryInKb : UInt { get }
+    
+    var numberOfEntries : UInt { get }
     
 }
 
