@@ -9,6 +9,6 @@
 import Foundation
 
 protocol SerializationProtocol {
-    static func serialize(info : Self.Type) -> Data?
-    static func deSerialize(data : Data) -> Self.Type?
+    static func serialize(info : SerializationProtocol) -> Data?
+    static func deSerialize(data : Data) -> SerializationProtocol?
 }
