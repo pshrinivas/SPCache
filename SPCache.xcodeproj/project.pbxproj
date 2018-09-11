@@ -11,6 +11,8 @@
 		9B89A5A821466D1D0018B7D0 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B89A5A721466D1D0018B7D0 /* MemoryStorage.swift */; };
 		9B89A5AA214675720018B7D0 /* LRUEvictionPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B89A5A9214675720018B7D0 /* LRUEvictionPolicy.swift */; };
 		9B89A5AC21467F070018B7D0 /* SerializationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B89A5AB21467F070018B7D0 /* SerializationProtocol.swift */; };
+		9B89A5B1214783B80018B7D0 /* DataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B89A5B0214783B80018B7D0 /* DataExtension.swift */; };
+		9B89A5B3214788DB0018B7D0 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B89A5B2214788DB0018B7D0 /* Queue.swift */; };
 		9BB421262140FCBE00056BEE /* SPCache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BB4211C2140FCBE00056BEE /* SPCache.framework */; };
 		9BB4212B2140FCBE00056BEE /* SPCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB4212A2140FCBE00056BEE /* SPCacheTests.swift */; };
 		9BB4212D2140FCBE00056BEE /* SPCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BB4211F2140FCBE00056BEE /* SPCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,6 +36,8 @@
 		9B89A5A721466D1D0018B7D0 /* MemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
 		9B89A5A9214675720018B7D0 /* LRUEvictionPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRUEvictionPolicy.swift; sourceTree = "<group>"; };
 		9B89A5AB21467F070018B7D0 /* SerializationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerializationProtocol.swift; sourceTree = "<group>"; };
+		9B89A5B0214783B80018B7D0 /* DataExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataExtension.swift; sourceTree = "<group>"; };
+		9B89A5B2214788DB0018B7D0 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		9BB4211C2140FCBE00056BEE /* SPCache.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SPCache.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BB4211F2140FCBE00056BEE /* SPCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SPCache.h; sourceTree = "<group>"; };
 		9BB421202140FCBE00056BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -80,6 +84,15 @@
 			path = EvictionPolicy;
 			sourceTree = "<group>";
 		};
+		9B89A5AF2147839B0018B7D0 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				9B89A5B0214783B80018B7D0 /* DataExtension.swift */,
+				9B89A5B2214788DB0018B7D0 /* Queue.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		9BB421122140FCBE00056BEE = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +114,7 @@
 		9BB4211E2140FCBE00056BEE /* SPCache */ = {
 			isa = PBXGroup;
 			children = (
+				9B89A5AF2147839B0018B7D0 /* Utilities */,
 				9B89A5A621466CFF0018B7D0 /* EvictionPolicy */,
 				9B89A5A521466CF30018B7D0 /* StorageProvider */,
 				9BB4211F2140FCBE00056BEE /* SPCache.h */,
@@ -237,7 +251,9 @@
 				9B89A5AA214675720018B7D0 /* LRUEvictionPolicy.swift in Sources */,
 				9B89A5A821466D1D0018B7D0 /* MemoryStorage.swift in Sources */,
 				9BB4213721410D9F00056BEE /* SPCache.swift in Sources */,
+				9B89A5B1214783B80018B7D0 /* DataExtension.swift in Sources */,
 				9B89A5AC21467F070018B7D0 /* SerializationProtocol.swift in Sources */,
+				9B89A5B3214788DB0018B7D0 /* Queue.swift in Sources */,
 				9B89A5A4214668540018B7D0 /* SPCacheConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
