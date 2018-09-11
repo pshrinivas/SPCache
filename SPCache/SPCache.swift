@@ -42,20 +42,18 @@ class SPCache<T : SerializationProtocol>{
             }
             
             evictionPolicy.acess(key: key)
-            if shouldEvict {
-                evictionPolicy.evict()
-            }
-            
             return value
         }
         set(newValue) {
             guard let newValue = newValue,
                 let serializedValue = T.serialize(info: newValue) else{
-                    storage.set(value: nil, key: key)
+                    storage.delete(key: key)
                     return
             }
             
             storage.set(value: serializedValue, key: key)
+            evictionPolicy.acess(key: key)
+            evictIfNeeded()
             
         }
     }
@@ -71,8 +69,15 @@ class SPCache<T : SerializationProtocol>{
         return false
     }
     
+    private func evictIfNeeded(){
+        if shouldEvict{
+            let evictionCandidateKey = evictionPolicy.nextEvictCandidateKey
+            storage.delete(key: evictionCandidateKey)
+        }
+    }
+    
     func clearAll(){
-        
+        storage.removeAll()
     }
     
 }
