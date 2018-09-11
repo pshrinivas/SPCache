@@ -71,8 +71,9 @@ class SPCache<T : SerializationProtocol>{
     
     private func evictIfNeeded(){
         if shouldEvict{
-            let evictionCandidateKey = evictionPolicy.nextEvictCandidateKey
-            storage.delete(key: evictionCandidateKey)
+            if let evictionCandidateKey = evictionPolicy.nextEvictCandidateKey{
+                storage.delete(key: evictionCandidateKey)
+            }
         }
     }
     

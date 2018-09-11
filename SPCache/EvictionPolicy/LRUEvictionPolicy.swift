@@ -9,23 +9,20 @@
 import Foundation
 
 class LRUEvictionPolicy : SPCacheEvictionPolicy{
-
-    private var queue = [String]()
+    
+    private var queue = Queue<String>()
     
     func acess(key: String) {
-        queue.append(key)
+        queue.remove(item: key)
+        queue.enqueue(item: key)
     }
     
     func delete(key: String) {
-    
+        queue.remove(item: key)
     }
     
-    var nextEvictCandidate: String{
-        return ""
-    }
-    
-    var shouldEvict: Bool{
-        return false
+    var nextEvictCandidateKey: String?{
+        return queue.peek()
     }
     
     
