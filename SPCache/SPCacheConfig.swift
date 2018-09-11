@@ -19,10 +19,17 @@ struct SPCacheConfig{
     // Defines Storage provider
     var storage : StorageProvider
     
+    // Indicates memory size in kb
+    // Default value is 0 indicating unlimited memory
+    var memorySizeInKb : UInt = 0
+    
+    // Indicates max entry made in cache
+    // Default value is 0 indicating unlimited entry
+    var maxEntry : UInt = 0
     
     static var defaultConfig : SPCacheConfig{
         let memoryStorage = MemoryStorage()
         let evictionPolicy = LRUEvictionPolicy()
-        return SPCacheConfig(identifier: "default", evictionPolicy: evictionPolicy, storage: memoryStorage)
+        return SPCacheConfig(identifier: "default", evictionPolicy: evictionPolicy, storage: memoryStorage, memorySizeInKb: 1024, maxEntry: 100)
     }
 }

@@ -18,6 +18,10 @@ protocol SPCacheEvictionPolicy {
     
     var shouldEvict : Bool { get }
     
+    var currentMemoryInKb : UInt { get }
+    
+    var numberOfEntries : UInt { get }
+    
 }
 
 extension SPCacheEvictionPolicy{
